@@ -9,8 +9,7 @@ TAX_RATE = 0.08
 
 
 def discount_rate(cart: Cart) -> float:
-    # BUG (v42): carts without a coupon no longer carry 'coupon_id' -> KeyError -> HTTP 500
-    coupon = cart.meta["coupon_id"]
+    coupon = cart.meta.get("coupon_id")
     return COUPONS.get(coupon, 0.0)
 
 
